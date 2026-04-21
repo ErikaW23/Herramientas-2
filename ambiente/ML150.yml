@@ -1,4 +1,4 @@
-name: C:\Users\princ\anaconda3\envs\ML150
+name: ML150
 channels:
   - defaults
 dependencies:

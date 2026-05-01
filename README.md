@@ -1,12 +1,12 @@
 # Proyecto grupal CA0305
-Repositorio creado para el desarrollo del proyecto grupal del curso CA0305 - Herramientas para Ciencia de Datos II.
+Repositorio creado para el desarrollo del proyecto grupal del curso CA0305 - Herramientas para Ciencia de Datos II. <br>
 
-Estudiantes:
-Alexandra González Bermúdez 
-Daniela Prado Vargas
-Emily Estefanía Mora Contreras 
-Liz Salazar Amaya
-Ericka Wu Liang
+Estudiantes: <br>
+Alexandra González Bermúdez <br>
+Daniela Prado Vargas <br>
+Emily Estefanía Mora Contreras <br>
+Liz Salazar Amaya <br>
+Ericka Wu Liang <br>
 
-Profesor:
+Profesor: <br>
 Joshua Cervantes Artavia

@@ -6,7 +6,7 @@ Alexandra González Bermúdez <br>
 Daniela Prado Vargas <br>
 Emily Estefanía Mora Contreras <br>
 Liz Salazar Amaya <br>
-Ericka Wu Liang <br>
+Erika Wu Liang <br>
 
 Profesor: <br>
 Joshua Cervantes Artavia

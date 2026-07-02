@@ -38,6 +38,18 @@ format:
 
 # Método y resultados
 
+## Descripción del modelo
+
+El modelo escogido Vit-Base es una arquitectura de aprendizaje profundo diseñada para la clasificación de imágenes. A diferencia de redes convolucionales tradicionales, Vit adapta la arquitectura Transformer (originalmente creada para analizar lenguaje natural) al análisis de imágenes. 
+
+Primero, redimensiona la imagen  a 224×224 píxeles  y luego la divide en 196 parches de 16×16 píxeles , característico de la variante Vit-Base/16. Cada parche se transforma en un vector numérico mediante una proyección lineal, de esta forma se obtiene una secuencia de representaciones. Mediante esta secuencia, se le incorpora información de la posición inicial de cada parche, ya que al convertirlos en una lista lineal se pierde la información de que parches eran vecinos en la imagen original, de esta forma, se podrá conocer la disposición espacial de cada elemento y permitir relacionarlos entre sí.
+
+La secuencia completa pasa por una serie de bloques Transformer, cada uno compuesto por un mecanismo de atención y capas de transformación. El mecanismo de atención permite que cada parche intercambie información con los demás, independientemente de su distancia en la imagen. 
+
+Adicionalmente, se añade un token al inicio de la secuencia, el cual, tras el procesamiento, concentra la información de toda la imagen. Se considera el puente que ayuda al modelo a transformar este vector numérico a las categorías que tenga el dataset, además, al pasar ese vector por una función matemática llamada softmax, cada categoría se transforma en una probabilidad donde todas suman 1. Finalmente, el modelo muestra la categoría con mayor probabilidad de que la imagen pertenezca a ella.
+
+## Relacion con la fundamentación matemática de las bitácoras
+
 # Conclusiones
 
 # Referencias

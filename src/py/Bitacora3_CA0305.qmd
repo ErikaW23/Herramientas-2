@@ -1,0 +1,45 @@
+---
+format: 
+  pdf: 
+    papersize: letter
+    documentclass: article
+    lang: es-CR
+    titlepage: true
+    toc: true
+    toc-title: "Índice"
+    toccolor: "black"
+    fontsize: "11pt"
+    mainfont: Times New Roman
+    urlcolor: "blue"
+    number-sections: true
+    margin-left: "2.54cm"
+    margin-right: "2.54cm"
+    margin-top: "2.54cm"
+    margin-bottom: "2.54cm"
+    header-includes:
+      - \usepackage{indentfirst}
+      - \setlength{\parindent}{1.27cm}
+      - \usepackage{longtable}
+      - \usepackage{array}
+      - \renewcommand{\arraystretch}{1.5}
+      - \setlength{\tabcolsep}{8pt}
+      - \usepackage{float}
+      - \usepackage{textcomp}
+    #include-before-body: Portada.tex
+---
+
+# Introducción
+
+# Datos y análisis
+
+## Descripción de la base de datos
+
+## Análisis de la aplicación del modelo sobre el dataset
+
+# Método y resultados
+
+# Conclusiones
+
+# Referencias
+
+# Anexos

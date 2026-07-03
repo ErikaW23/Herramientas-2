@@ -5,13 +5,12 @@ format:
     documentclass: article
     lang: es-CR
     titlepage: true
-    toc: true
-    toc-title: "Índice"
+    toc: false
     toccolor: "black"
     fontsize: "11pt"
     mainfont: Times New Roman
     urlcolor: "blue"
-    number-sections: true
+    number-sections: false
     margin-left: "2.54cm"
     margin-right: "2.54cm"
     margin-top: "2.54cm"
@@ -23,16 +22,43 @@ format:
       - \usepackage{array}
       - \renewcommand{\arraystretch}{1.5}
       - \setlength{\tabcolsep}{8pt}
-      - \usepackage{float}
-      - \usepackage{textcomp}
-    #include-before-body: Portada.tex
+      - \usepackage{setspace}
+      - \setstretch{1.15}
+editor: 
+  markdown: 
+    wrap: sentence
 ---
+
+
+```{=latex}
+\begin{center}
+```
+
+```{=latex}
+{\fontsize{16pt}{14pt}\selectfont\textbf{Informe del proyecto grupal: CA0305}}
+```
+
+```{=latex}
+{\fontsize{12pt}{14pt}\selectfont Alexandra González, Estefanía Mora, Daniela Prado, Liz Salazar y Ericka Wu}
+```
+
+```{=latex}
+\end{center}
+```
+
 
 # Introducción
 
 # Datos y análisis
 
+La selección de la base de datos a partir de la cual se desarrollará un proyecto, constituye uno de los elementos de mayor importancia en el proceso. Por ello, es fundamental conocer en detalle las características del conjunto de datos elegido, incluyendo su origen, sus autores, la cantidad de observaciones disponibles y otros elementos relevantes. Bajo el contexto planteado, la presente sección está destinada a describir el conjunto de datos utilizado en el proyecto.
+
 ## Descripción de la base de datos
+
+La base de datos empleada en el proyecto se denomina *Caltech 101*. Corresponde a un conjunto de datos de imágenes digitales recopiladas en setiembre de 2003 por los investigadores Fei-Fei Li, Marco Andreetto, Marc'Aurelio Ranzato y Pietro Perona, en el Instituto Tecnológico de California en Estados Unidos. El principal objetivo de los investigadores consistía en facilitar la investigación en el campo de la visión artificial, además de brindar una herramienta útil tanto para la categorización como para la clasificación de las imágenes. 
+
+Por otro lado, de acuerdo con Griffin et al. (2007), el proceso de construcción de la base de datos respondió al siguiente procedimiento: en un primer momento, se definió un conjunto de categorías de objetos, después, en un segundo momento, se extrajo una serie de imágenes de Internet utilizando el buscador de Google Imágenes, finalmente, en un tercer momento, se filtró manualmente los resultados en vías de eliminar todas las imágenes que no se ajustaban de forma correcta a la categoría asignada.
+
 
 ## Análisis de la base de datos
 
@@ -53,5 +79,15 @@ Adicionalmente, se añade un token al inicio de la secuencia, el cual, tras el p
 # Conclusiones
 
 # Referencias
+\begin{list}{}{
+\setlength{\leftmargin}{1.27cm}
+\setlength{\itemindent}{-1.27cm}
+}
 
-# Anexos
+\item Griffin, G., Holub, H. \& Perona, P. (2007). \textit{Caltech-256 Object Category Dataset}. ResearchGate. \url{https://www.researchgate.net/publication/30766223_Caltech-256_Object_Category_Dataset}\par
+\vspace{0.03cm}
+
+\item Li, F., Andreeto, M., Ranzato, M. \& Perona, P. (2022). \textit{Caltech 101 (1.0)} [Data set]. CaltechDATA. \url{https://doi.org/10.22002/D1.20086}\par
+\vspace{0.03cm}
+
+\end{list}

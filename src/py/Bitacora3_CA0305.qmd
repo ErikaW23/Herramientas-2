@@ -83,7 +83,7 @@ La confianza representa el grado de certeza con que el modelo asigna una categor
 
 ## Resultados 
 
-Para la generación de resultados, se aplicó el modelo al dataset escogido: *Caltech 101* a las primeras 100 imágenes, con el fin de encontrar una conclusión acerca de cómo funciona el modelo y sus limitaciones. Primero, al analizar la coincidencia de las etiquetas del dataset Caltech-101 respecto a las predicciones del modelo entrenado en ImageNet, se encontró que solo el 7% coincide en texto exacto. Sin embargo, el modelo ha logrado acertar categorías que se parezcan o esten relacionadas con las etiquetas de los datos analizados como por ejemplo airplanes con airliner. Además, los casos con mayor confianza tienden a coincidir semánticamente con la etiqueta real, como se muestra en la siguiente tabla.
+Para la generación de resultados, se aplicó el modelo al dataset escogido: *Caltech 101* a las primeras 100 imágenes, con el fin de encontrar una conclusión acerca de cómo funciona el modelo y sus limitaciones. Primero, al analizar la coincidencia de las etiquetas del dataset Caltech-101 respecto a las predicciones del modelo entrenado en ImageNet, se encontró que solo el 7% coincide en texto exacto. Sin embargo, el modelo ha logrado acertar categorías que se parezcan o esten relacionadas con las etiquetas de los datos analizados como por ejemplo "airplane" con "airliner". Además, los casos con mayor confianza tienden a coincidir semánticamente con la etiqueta real, como se muestra en la siguiente tabla.
 
 \begin{table}[H]
     \centering
@@ -115,6 +115,54 @@ En el histograma siguiente se muestra la distribución de la confianza asignada 
     \caption{Distribución de confianza del modelo ViT-Base aplicado al dataset Caltech-101.}
     \label{fig:histograma}
 \end{figure}
+
+En el caso de las imágenes que el modelo asignó menos confianza, se observa un patrón donde el modelo tiende a relacionar elementos visualmente similares como rinoceronte y elefante ya que comparten tamaño, color, textura de piel. Además, tiende a colocar categorías sin relación aparente como en el caso del yin y yang que lo relacióno con un disco de hockey,  que podrájn ser visualmente parecidos, pero no comparten ningún significado similar. En estos casos, el modelo claramente no reconoció el objeto lo que o que indica que estas categorías no tienen una representación clara en el conjunto de datos con el que fue entrenado el modelo. 
+
+\begin{table}[H]
+    \centering
+    \caption{Predicciones con menor confianza del modelo ViT-Base}
+    \begin{tabular}{cllr}
+        \toprule
+        Imagen & Clase real & Predicción del modelo & Confianza \\
+        \midrule
+        81 & pigeon & black grouse & 0.024 \\
+        30 & gramophone & loudspeaker, speaker unit & 0.042 \\
+        88 & faces & Windsor tie & 0.065 \\
+        84 & yin\_yang & puck, hockey puck & 0.067 \\
+        27 & motorbikes & crash helmet & 0.079 \\
+        83 & yin\_yang & nematode, nematode worm & 0.081 \\
+        53 & rhino & African elephant & 0.082 \\
+        61 & joshua\_tree & screen, CRT screen & 0.082 \\
+        11 & helicopter & lakeside, lakeshore & 0.089 \\
+        66 & stapler & harmonica, mouth organ & 0.092 \\
+        \bottomrule
+    \end{tabular}
+    \label{tbl-menor_confianza}
+\end{table}
+
+Dentro de las predicciones más frecuentes,  se observa que entre ellas no presentan una relación notoria, es decir visualmente no comparten características  lo que podría indicar que el modelo no está sesgado hacia predecir un tipo de categoría sino que busca analizar cada imagen de manera individual, además, aparece  en gran cantidad "disk brake" y el dataset tiene categoría como "motorbikes" por lo que el modelo podría estar detectando la imagen de freno de discos en imágenes de motos.
+
+\begin{table}[H]
+    \centering
+    \caption{Predicciones más frecuentes del modelo ViT-Base}
+    \begin{tabular}{lr}
+        \toprule
+        Predicción del modelo & Frecuencia \\
+        \midrule
+        disk brake, disc brake & 9 \\
+        airliner & 6 \\
+        stopwatch, stop watch & 4 \\
+        cheetah, Acinonyx jubatus & 3 \\
+        triceratops & 3 \\
+        warplane, military plane & 2 \\
+        jaguar, Panthera onca & 2 \\
+        beach wagon, station wagon & 2 \\
+        candle, taper, wax light & 2 \\
+        oboe, hautboy & 2 \\
+        \bottomrule
+    \end{tabular}
+    \label{tbl-frecuentes}
+\end{table}
 
 
 # Conclusiones

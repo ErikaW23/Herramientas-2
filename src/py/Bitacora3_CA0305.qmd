@@ -109,6 +109,12 @@ Para la generación de resultados, se aplicó el modelo al dataset escogido: *Ca
 
 En el histograma siguiente se muestra la distribución de la confianza asignada a las 100 imágenes analizadas. Un 30% de las imágenes obtuvo una confianza cercana a 1.0, lo que corresponde a los casos en que la predicción del modelo tiende a coincidir semánticamente con la etiqueta real del dataset (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes"). Las imágenes restantes presentan una distribución dispersa a lo largo del rango de confianza, lo que indica menor certeza en la clasificación. La confianza promedio obtenida fue de 61.3%, lo que sugiere un desempeño moderado del modelo sobre este dataset.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../datos/salidas/histograma_confianza.png}
+    \caption{Distribución de confianza del modelo ViT-Base aplicado al dataset Caltech-101.}
+    \label{fig:histograma}
+\end{figure}
 
 
 # Conclusiones

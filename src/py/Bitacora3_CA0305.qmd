@@ -23,6 +23,8 @@ format:
       - \renewcommand{\arraystretch}{1.5}
       - \setlength{\tabcolsep}{8pt}
       - \usepackage{setspace}
+      - \usepackage{booktabs}
+      - \usepackage{float}
       - \setstretch{1.15}
 editor: 
   markdown: 
@@ -74,7 +76,40 @@ La secuencia completa pasa por una serie de bloques Transformer, cada uno compue
 
 Adicionalmente, se añade un token al inicio de la secuencia, el cual, tras el procesamiento, concentra la información de toda la imagen. Se considera el puente que ayuda al modelo a transformar este vector numérico a las categorías que tenga el dataset, además, al pasar ese vector por una función matemática llamada softmax, cada categoría se transforma en una probabilidad donde todas suman 1. Finalmente, el modelo muestra la categoría con mayor probabilidad de que la imagen pertenezca a ella.
 
-## Relacion con la fundamentación matemática de las bitácoras
+## Relación con la fundamentación matemática de las bitácoras
+
+La confianza representa el grado de certeza con que el modelo asigna una categoría a cada imagen analizada. Un valor alto indica que el modelo identificó características visuales consistentes con una categoría específica; un valor bajo sugiere que la imagen no presenta similitudes claras con ninguna de las categorías conocidas por el modelo. La confianza se genera mediante la función softmax, mencionada anteriormente, que transforma la información generada por el token especial a probabilidades mediante una distribución válida. 
+
+
+## Resultados 
+
+Para la generación de resultados, se aplicó el modelo al dataset escogido: *Caltech 101* a las primeras 100 imágenes, con el fin de encontrar una conclusión acerca de cómo funciona el modelo y sus limitaciones. Primero, al analizar la coincidencia de las etiquetas del dataset Caltech-101 respecto a las predicciones del modelo entrenado en ImageNet, se encontró que solo el 7% coincide en texto exacto. Sin embargo, el modelo ha logrado acertar categorías que se parezcan o esten relacionadas con las etiquetas de los datos analizados como por ejemplo airplanes con airliner. Además, los casos con mayor confianza tienden a coincidir semánticamente con la etiqueta real, como se muestra en la siguiente tabla.
+
+\begin{table}[H]
+    \centering
+    \caption{Predicciones con mayor confianza del modelo ViT-Base}
+    \begin{tabular}{cllr}
+        \toprule
+        Imagen & Clase real & Predicción del modelo & Confianza \\
+        \midrule
+        36 & nautilus & chambered nautilus, pearly nautilus & 0.999 \\
+        52 & trilobite & trilobite & 0.999 \\
+        96 & accordion & accordion, piano accordion & 0.999 \\
+        90 & binocular & binoculars, field glasses & 0.999 \\
+        17 & flamingo\_head & flamingo & 0.999 \\
+        51 & flamingo & flamingo & 0.998 \\
+        31 & scorpion & scorpion & 0.998 \\
+        73 & revolver & revolver, six-gun & 0.998 \\
+        35 & beaver & beaver & 0.997 \\
+        69 & airplanes & airliner & 0.997 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:mayor_confianza}
+\end{table}
+
+En el histograma siguiente se muestra la distribución de la confianza asignada a las 100 imágenes analizadas. Un 30% de las imágenes obtuvo una confianza cercana a 1.0, lo que corresponde a los casos en que la predicción del modelo tiende a coincidir semánticamente con la etiqueta real del dataset (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes"). Las imágenes restantes presentan una distribución dispersa a lo largo del rango de confianza, lo que indica menor certeza en la clasificación. La confianza promedio obtenida fue de 61.3%, lo que sugiere un desempeño moderado del modelo sobre este dataset.
+
+
 
 # Conclusiones
 

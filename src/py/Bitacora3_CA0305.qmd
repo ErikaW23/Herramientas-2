@@ -134,7 +134,7 @@ En el histograma siguiente se muestra la distribución de la confianza asignada 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../datos/salidas/histograma_confianza.png}
+    \includegraphics[width=0.8\textwidth]{../../datos/salidas/histograma_confianza.png}
     \caption{Distribución de confianza del modelo ViT-Base aplicado al dataset Caltech-101.}
     \label{fig:histograma}
 \end{figure}
@@ -187,6 +187,7 @@ Dentro de las predicciones más frecuentes, se observa que entre ellas no presen
     \label{tbl-frecuentes}
 \end{table}
 
+\clearpage
 
 # Conclusiones
 

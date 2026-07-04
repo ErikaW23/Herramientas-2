@@ -61,8 +61,13 @@ La base de datos empleada en el proyecto se denomina *Caltech 101*. Corresponde 
 
 Por otro lado, de acuerdo con Griffin et al. (2007), el proceso de construcción de la base de datos respondió al siguiente procedimiento: en un primer momento, se definió un conjunto de categorías de objetos, después, en un segundo momento, se extrajo una serie de imágenes de Internet utilizando el buscador de Google Imágenes, finalmente, en un tercer momento, se filtró manualmente los resultados en vías de eliminar todas las imágenes que no se ajustaban de forma correcta a la categoría asignada.
 
+## Características de la base de datos 
 
-## Análisis de la base de datos
+La base de datos elegida, *Caltech 101*, se caracteriza por contener aproximadamente 9000 imágenes digitales organizadas en 101 categorías de objetos. Las imágenes corresponden a clases variadas, como animales, vehículos, instrumentos, utensilios y otros objetos cotidianos.
+
+Cada categoría posee entre 40 y 800 imágenes, aunque la mayoría cuenta con alrededor de 50 observaciones, por lo que la base presenta cierto desbalance entre clases. Las imágenes tienen un tamaño aproximado de 300 × 200 píxeles y, en general, muestran objetos centrados con fondos relativamente simples.
+
+Además, el conjunto de datos incluye anotaciones manuales de los contornos de los objetos, lo cual permite identificar la región principal dentro de cada imagen.
 
 # Método y resultados
 

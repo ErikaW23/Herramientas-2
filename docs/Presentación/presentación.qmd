@@ -18,44 +18,37 @@ format:
                 \setlength{\parskip}{0.8cm}
                 \usepackage{hanging}
                 \usepackage{xurl}
-                
 ---
 
 ## Introducción: motivación y objetivo
 
-Objetivo: aplicar un modelo preentrenado de clasificación de imágenes y analizar su desempeño, conectándolo con la fundamentación matemática de las bitácoras.
-Tarea: clasificación de imágenes.
-Relevancia actuarial (1 línea): el nivel de confianza de una predicción puede usarse para distinguir casos procesables automáticamente vs. casos que requieren revisión humana (ej. fotos de reclamos o daños en seguros).
+Objetivo: aplicar un modelo preentrenado de clasificación de imágenes y analizar su desempeño, conectándolo con la fundamentación matemática de las bitácoras. Tarea: clasificación de imágenes. Relevancia actuarial (1 línea): el nivel de confianza de una predicción puede usarse para distinguir casos procesables automáticamente vs. casos que requieren revisión humana (ej. fotos de reclamos o daños en seguros).
 
 ## Tarea seleccionada y justificación
 
-Tarea: clasificación de imágenes.
-Modelo: ViT-Base (Vision Transformer, variante patch16-224), vía el paquete Transformers.
-Por qué: adapta el mecanismo de atención de los Transformers (NLP) al análisis visual — permite ilustrar cómo la IA puede apoyar procesos de segmentación y predicción de riesgos en el trabajo actuarial.
+Tarea: clasificación de imágenes. Modelo: ViT-Base (Vision Transformer, variante patch16-224), vía el paquete Transformers. Por qué: adapta el mecanismo de atención de los Transformers (NLP) al análisis visual — permite ilustrar cómo la IA puede apoyar procesos de segmentación y predicción de riesgos en el trabajo actuarial.
 
 ## Descripción del dataset
 
-Fuente: Caltech 101 (Fei-Fei, Andreetto, Ranzato & Perona, Caltech, 2003), con la referencia completa en el footnote.
-Tamaño: ~9,000 imágenes en 101 categorías; entre 40 y 800 imágenes por clase (la mayoría ~50), con desbalance notorio entre clases.
-Detalle: imágenes ~300×200 px, objetos centrados, fondos simples, con anotaciones manuales de contorno.
+Fuente: Caltech 101 (Fei-Fei, Andreetto, Ranzato & Perona, Caltech, 2003), con la referencia completa en el footnote. Tamaño: \~9,000 imágenes en 101 categorías; entre 40 y 800 imágenes por clase (la mayoría \~50), con desbalance notorio entre clases. Detalle: imágenes \~300×200 px, objetos centrados, fondos simples, con anotaciones manuales de contorno.
 
 ## Descripción del modelo y metodología
 
-- Redimensiona la imagen a 224×224 px y la divide en **196 parches** de 16×16 px.
-- Cada parche se convierte en un vector numérico (embedding) mediante una proyección lineal.
-- Se incorpora información de posición para preservar la disposición espacial de los parches.
-- El mecanismo de **atención** permite que cada parche intercambie información con los demás.
-- El token **[CLS]** concentra la información de toda la imagen y produce las probabilidades finales.
-- **Metodología:** modelo aplicado sin fine-tuning sobre las primeras 100 imágenes de Caltech-101.
+-   Redimensiona la imagen a 224×224 px y la divide en **196 parches** de 16×16 px.
+-   Cada parche se convierte en un vector numérico (embedding) mediante una proyección lineal.
+-   Se incorpora información de posición para preservar la disposición espacial de los parches.
+-   El mecanismo de **atención** permite que cada parche intercambie información con los demás.
+-   El token **\[CLS\]** concentra la información de toda la imagen y produce las probabilidades finales.
+-   **Metodología:** modelo aplicado sin fine-tuning sobre las primeras 100 imágenes de Caltech-101.
 
 ## Fundamentación matemática: relación con las Bitácoras 1 y 2
 
-- **Multiplicación matricial** + **capa lineal** (Y=XW+b): convierte cada parche en un embedding.
-- **Broadcasting**: suma la información posicional a cada embedding.
-- **Producto punto** + **softmax**: mecanismo de atención entre parches.
-- **Layer Normalization**: normalización independiente por parche.
-- **Conexiones residuales**: suma elemento a elemento alrededor de cada bloque.
-- **Softmax final**: produce la probabilidad por categoría (confianza).
+-   **Multiplicación matricial** + **capa lineal** (Y=XW+b): convierte cada parche en un embedding.
+-   **Broadcasting**: suma la información posicional a cada embedding.
+-   **Producto punto** + **softmax**: mecanismo de atención entre parches.
+-   **Layer Normalization**: normalización independiente por parche.
+-   **Conexiones residuales**: suma elemento a elemento alrededor de cada bloque.
+-   **Softmax final**: produce la probabilidad por categoría (confianza).
 
 ## Resultados: distribución de confianza
 
@@ -88,7 +81,6 @@ Confianza promedio: 61.3% — un 30% de las imágenes obtuvo confianza cercana a
         \bottomrule
     \end{tabular}
 \end{table}
-
 
 ## Resultados: predicciones con menor confianza
 
@@ -136,9 +128,8 @@ Confianza promedio: 61.3% — un 30% de las imágenes obtuvo confianza cercana a
 
 ## Conclusiones y aplicación actuarial
 
-Hallazgo clave: el modelo distingue bien clases con patrones visuales distintivos (formas espirales, estructuras repetitivas), pero falla en clases visualmente similares o poco representadas.
-Limitación: baja coincidencia exacta (7%) pese a confianza moderada-alta; el modelo no debe tratarse como herramienta perfecta.
-Aplicación actuarial: apoyo en el análisis de fotos de reclamos/daños en seguros generales, la confianza como criterio para automatizar vs. derivar a revisión humana, siempre como apoyo y no sustituto del criterio profesional.
+-   Hallazgo: el modelo distingue bien clases con patrones visuales distintivos, pero falla en clases visualmente similares o poco representadas.
 
-Hallazgos principales, limitaciones, aplicación actuarial
+-   Limitación: baja coincidencia exacta (7%) pese a confianza moderada-alta; indicativo de error en las asignaciones de grados de confianza.
 
+-   Aplicación actuarial: apoyo en el análisis de fotos de reclamos/daños en seguros generales, la confianza como criterio para automatizar vs. derivar a revisión humana.

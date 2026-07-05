@@ -39,36 +39,100 @@ Fuente: Caltech 101 (Fei-Fei, Andreetto, Ranzato & Perona, Caltech, 2003), con l
 Tamaño: ~9,000 imágenes en 101 categorías; entre 40 y 800 imágenes por clase (la mayoría ~50), con desbalance notorio entre clases.
 Detalle: imágenes ~300×200 px, objetos centrados, fondos simples, con anotaciones manuales de contorno.
 
+## Descripción del modelo y metodología
+
+- Redimensiona la imagen a 224×224 px y la divide en **196 parches** de 16×16 px.
+- Cada parche se convierte en un vector numérico (embedding) mediante una proyección lineal.
+- Se incorpora información de posición para preservar la disposición espacial de los parches.
+- El mecanismo de **atención** permite que cada parche intercambie información con los demás.
+- El token **[CLS]** concentra la información de toda la imagen y produce las probabilidades finales.
+- **Metodología:** modelo aplicado sin fine-tuning sobre las primeras 100 imágenes de Caltech-101.
+
 ## Fundamentación matemática: relación con las Bitácoras 1 y 2
 
-Multiplicación matricial (Bitácora 1) + capa lineal Y=XW+b (Bitácora 2, Ejercicio 1): convierte cada parche en un embedding.
-Broadcasting (Bitácora 1): suma la información posicional a cada embedding.
-Producto punto (Bitácora 1, Ejercicio 7): mecanismo de atención entre parches, seguido de softmax para obtener los pesos de atención.
+- **Multiplicación matricial** + **capa lineal** (Y=XW+b): convierte cada parche en un embedding.
+- **Broadcasting**: suma la información posicional a cada embedding.
+- **Producto punto** + **softmax**: mecanismo de atención entre parches.
+- **Layer Normalization**: normalización independiente por parche.
+- **Conexiones residuales**: suma elemento a elemento alrededor de cada bloque.
+- **Softmax final**: produce la probabilidad por categoría (confianza).
 
-## Fundamentación matemática 
+## Resultados: distribución de confianza
 
-Layer Normalization (Bitácora 2, Ejercicio 20) antes de atención y del MLP.
-Conexiones residuales (suma elemento a elemento, Bitácora 1, Ejercicio 3) alrededor de cada bloque.
-MLP final = otra multiplicación matricial + no linealidad; softmax al final da la probabilidad/confianza por categoría.
-Aclaración explícita: se explica la relación matemática, no el funcionamiento interno completo del modelo.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{../../datos/salidas/histograma_confianza.png}
+    \caption{Distribución de confianza del modelo ViT-Base aplicado al dataset Caltech-101.}
+\end{figure}
 
-## Metodología aplicada
+Confianza promedio: 61.3% — un 30% de las imágenes obtuvo confianza cercana a 1.0.
 
-Se usó ViT-Base preentrenado (sin fine-tuning) sobre las primeras 100 imágenes del set de entrenamiento de Caltech 101.
-Se comparó la clase real vs. la predicción del modelo y su confianza asociada.
+## Resultados: predicciones con mayor confianza
 
-## Resultados principales
+\begin{table}
+    \small
+    \begin{tabular}{llr}
+        \toprule
+        Clase real & Predicción del modelo & Confianza \\
+        \midrule
+        nautilus & chambered nautilus, pearly nautilus & 0.999 \\
+        trilobite & trilobite & 0.999 \\
+        accordion & accordion, piano accordion & 0.999 \\
+        binocular & binoculars, field glasses & 0.999 \\
+        flamingo\_head & flamingo & 0.999 \\
+        flamingo & flamingo & 0.998 \\
+        scorpion & scorpion & 0.998 \\
+        revolver & revolver, six-gun & 0.998 \\
+        beaver & beaver & 0.997 \\
+        airplanes & airliner & 0.997 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-Solo 7% de coincidencia exacta en texto, pero muchos aciertos semánticos (ej. "airliner" para "airplanes").
-Tabla de mayor confianza: nautilus, trilobite, accordion, binocular — todas con confianza ≥0.997.
-Histograma de confianza: ~30% de las imágenes con confianza cercana a 1.0; el resto disperso.
 
-## Resultados: métricas de desempeño
+## Resultados: predicciones con menor confianza
 
-Confianza promedio: 61.3% (0.613, sobre 8677 datos).
-Coincidencia exacta promedio: ~7%.
-Tabla de menor confianza: pigeon, gramophone, faces, yin_yang — casos de confusión visual (rinoceronte/elefante, yin yang/disco de hockey).
-Predicción más frecuente: "disk brake" (9 veces), posiblemente detectando frenos en imágenes de motos ("motorbikes").
+\begin{table}
+    \small
+    \begin{tabular}{llr}
+        \toprule
+        Clase real & Predicción del modelo & Confianza \\
+        \midrule
+        pigeon & black grouse & 0.024 \\
+        gramophone & loudspeaker, speaker unit & 0.042 \\
+        faces & Windsor tie & 0.065 \\
+        yin\_yang & puck, hockey puck & 0.067 \\
+        motorbikes & crash helmet & 0.079 \\
+        yin\_yang & nematode, nematode worm & 0.081 \\
+        rhino & African elephant & 0.082 \\
+        joshua\_tree & screen, CRT screen & 0.082 \\
+        helicopter & lakeside, lakeshore & 0.089 \\
+        stapler & harmonica, mouth organ & 0.092 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+## Resultados: predicciones más frecuentes
+
+\begin{table}
+    \small
+    \begin{tabular}{lr}
+        \toprule
+        Predicción del modelo & Frecuencia \\
+        \midrule
+        disk brake, disc brake & 9 \\
+        airliner & 6 \\
+        stopwatch, stop watch & 4 \\
+        cheetah, Acinonyx jubatus & 3 \\
+        triceratops & 3 \\
+        warplane, military plane & 2 \\
+        jaguar, Panthera onca & 2 \\
+        beach wagon, station wagon & 2 \\
+        candle, taper, wax light & 2 \\
+        oboe, hautboy & 2 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 ## Conclusiones y aplicación actuarial
 

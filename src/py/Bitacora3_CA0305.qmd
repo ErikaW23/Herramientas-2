@@ -31,7 +31,6 @@ editor:
     wrap: sentence
 ---
 
-
 ```{=latex}
 \begin{center}
 ```
@@ -41,39 +40,50 @@ editor:
 ```
 
 ```{=latex}
-{\fontsize{12pt}{14pt}\selectfont Alexandra González, Estefanía Mora, Daniela Prado, Liz Salazar y Ericka Wu}
+{\fontsize{12pt}{14pt}\selectfont Alexandra González, Estefanía Mora, Daniela Prado, Liz Salazar y Erika Wu}
 ```
 
 ```{=latex}
 \end{center}
 ```
 
-
 # Introducción
 
-El presente proyecto tiene como objetivo aplicar un modelo de inteligencia artificial preentrenado a una tarea de clasificación de imágenes, con el fin de analizar su desempeño sobre un conjunto de datos de referencia en el campo de la visión artificial, y de establecer un vínculo entre los fundamentos matemáticos abordados en las bitácoras previas y el funcionamiento del modelo seleccionado. Para ello, se seleccionó la tarea de clasificación de imágenes, la cual consiste en asignar a cada imagen una etiqueta correspondiente a la categoría de objeto que representa.
+El presente proyecto tiene como objetivo aplicar un modelo de inteligencia artificial preentrenado a una tarea de clasificación de imágenes, con el fin de analizar su desempeño sobre un conjunto de datos de referencia en el campo de la visión artificial, y de establecer un vínculo entre los fundamentos matemáticos abordados en las bitácoras previas y el funcionamiento del modelo seleccionado.
+Para ello, se seleccionó la tarea de clasificación de imágenes, la cual consiste en asignar a cada imagen una etiqueta correspondiente a la categoría de objeto que representa.
 
-El modelo utilizado corresponde a ViT-Base (Vision Transformer, variante patch16-224), una arquitectura de aprendizaje profundo que adapta el mecanismo de atención de los Transformers, originalmente desarrollado para el procesamiento de lenguaje natural, al análisis de imágenes. Este modelo fue empleado en su versión preentrenada mediante el paquete Transformers, y ejecutado sobre el conjunto de datos Caltech 101, una base de datos de aproximadamente 9000 imágenes digitales distribuidas en 101 categorías de objetos, construida por investigadores del Instituto Tecnológico de California con fines de investigación en categorización y clasificación visual.
+El modelo utilizado corresponde a ViT-Base (Vision Transformer, variante patch16-224), una arquitectura de aprendizaje profundo que adapta el mecanismo de atención de los Transformers, originalmente desarrollado para el procesamiento de lenguaje natural, al análisis de imágenes.
+Este modelo fue empleado en su versión preentrenada mediante el paquete Transformers, y ejecutado sobre el conjunto de datos Caltech 101, una base de datos de aproximadamente 9000 imágenes digitales distribuidas en 101 categorías de objetos, construida por investigadores del Instituto Tecnológico de California con fines de investigación en categorización y clasificación visual.
 
-Se aplicó el modelo a las primeras 100 imágenes del conjunto de entrenamiento, contrastando la clase real de cada una con la predicción generada y su nivel de confianza asociado. Los resultados evidenciaron que, si bien solo un 7% de las predicciones coincidió de forma exacta en texto con la etiqueta original del dataset, el modelo logró identificar en numerosos casos categorías semánticamente relacionadas con la etiqueta real (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes"). La confianza promedio obtenida fue de 61.3%, y se observó que los casos de mayor confianza tendían a coincidir semánticamente con la clase verdadera, mientras que los de menor confianza se concentraron en categorías visualmente similares entre sí (como rinoceronte y elefante) o sin relación aparente, lo que sugiere limitaciones del modelo ante clases poco representadas o fácilmente confundibles.
+Se aplicó el modelo a las primeras 100 imágenes del conjunto de entrenamiento, contrastando la clase real de cada una con la predicción generada y su nivel de confianza asociado.
+Los resultados evidenciaron que, si bien solo un 7% de las predicciones coincidió de forma exacta en texto con la etiqueta original del dataset, el modelo logró identificar en numerosos casos categorías semánticamente relacionadas con la etiqueta real (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes").
+La confianza promedio obtenida fue de 61.3%, y se observó que los casos de mayor confianza tendían a coincidir semánticamente con la clase verdadera, mientras que los de menor confianza se concentraron en categorías visualmente similares entre sí (como rinoceronte y elefante) o sin relación aparente, lo que sugiere limitaciones del modelo ante clases poco representadas o fácilmente confundibles.
 
-La elección de esta tarea, modelo y conjunto de datos resulta pertinente para la formación de un(a) futuro(a) actuario(a), en la medida en que el ejercicio actuarial se apoya cada vez más en herramientas de inteligencia artificial y aprendizaje automático para la clasificación, segmentación y predicción de riesgos. En particular, un modelo como ViT-Base, aplicado por ejemplo al análisis de fotografías de reclamos o daños en seguros generales, permite ilustrar cómo el nivel de confianza de una predicción puede utilizarse como criterio para distinguir entre casos procesables de forma automática y casos que requieren revisión humana. Comprender los fundamentos matemáticos que subyacen a este tipo de modelos, así como los criterios para evaluar su desempeño (confianza, exactitud, coincidencia semántica), constituye una competencia transferible al análisis de datos actuariales, donde la correcta clasificación de casos y la cuantificación de la incertidumbre asociada a un modelo predictivo son elementos centrales para la toma de decisiones.
+La elección de esta tarea, modelo y conjunto de datos resulta pertinente para la formación de un(a) futuro(a) actuario(a), en la medida en que el ejercicio actuarial se apoya cada vez más en herramientas de inteligencia artificial y aprendizaje automático para la clasificación, segmentación y predicción de riesgos.
+En particular, un modelo como ViT-Base, aplicado por ejemplo al análisis de fotografías de reclamos o daños en seguros generales, permite ilustrar cómo el nivel de confianza de una predicción puede utilizarse como criterio para distinguir entre casos procesables de forma automática y casos que requieren revisión humana.
+Comprender los fundamentos matemáticos que subyacen a este tipo de modelos, así como los criterios para evaluar su desempeño (confianza, exactitud, coincidencia semántica), constituye una competencia transferible al análisis de datos actuariales, donde la correcta clasificación de casos y la cuantificación de la incertidumbre asociada a un modelo predictivo son elementos centrales para la toma de decisiones.
 
 # Datos y análisis
 
-La selección de la base de datos a partir de la cual se desarrollará un proyecto, constituye uno de los elementos de mayor importancia en el proceso. Por ello, es fundamental conocer en detalle las características del conjunto de datos elegido, incluyendo su origen, sus autores, la cantidad de observaciones disponibles y otros elementos relevantes. Bajo el contexto planteado, la presente sección está destinada a describir el conjunto de datos utilizado en el proyecto.
+La selección de la base de datos a partir de la cual se desarrollará un proyecto, constituye uno de los elementos de mayor importancia en el proceso.
+Por ello, es fundamental conocer en detalle las características del conjunto de datos elegido, incluyendo su origen, sus autores, la cantidad de observaciones disponibles y otros elementos relevantes.
+Bajo el contexto planteado, la presente sección está destinada a describir el conjunto de datos utilizado en el proyecto.
 
 ## Descripción de la base de datos
 
-La base de datos empleada en el proyecto se denomina *Caltech 101*. Corresponde a un conjunto de datos de imágenes digitales recopiladas en setiembre de 2003 por los investigadores Fei-Fei Li, Marco Andreetto, Marc'Aurelio Ranzato y Pietro Perona, en el Instituto Tecnológico de California en Estados Unidos. El principal objetivo de los investigadores consistía en facilitar la investigación en el campo de la visión artificial, además de brindar una herramienta útil tanto para la categorización como para la clasificación de las imágenes. 
+La base de datos empleada en el proyecto se denomina *Caltech 101*.
+Corresponde a un conjunto de datos de imágenes digitales recopiladas en setiembre de 2003 por los investigadores Fei-Fei Li, Marco Andreetto, Marc'Aurelio Ranzato y Pietro Perona, en el Instituto Tecnológico de California en Estados Unidos.
+El principal objetivo de los investigadores consistía en facilitar la investigación en el campo de la visión artificial, además de brindar una herramienta útil tanto para la categorización como para la clasificación de las imágenes.
 
 Por otro lado, de acuerdo con Fei-Fei et al. (2004), el proceso de construcción de la base de datos respondió al siguiente procedimiento: en un primer momento, se definió un conjunto de categorías de objetos, después, en un segundo momento, se extrajo una serie de imágenes de Internet utilizando el buscador de Google Imágenes, finalmente, en un tercer momento, se filtró manualmente los resultados en vías de eliminar todas las imágenes que no se ajustaban de forma correcta a la categoría asignada.
 
-## Características de la base de datos 
+## Características de la base de datos
 
-La base de datos elegida, *Caltech 101*, se caracteriza por contener aproximadamente 9000 imágenes digitales organizadas en 101 categorías de objetos. Las imágenes corresponden a clases variadas, como animales, vehículos, instrumentos, utensilios y otros objetos cotidianos.
+La base de datos elegida, *Caltech 101*, se caracteriza por contener aproximadamente 9000 imágenes digitales organizadas en 101 categorías de objetos.
+Las imágenes corresponden a clases variadas, como animales, vehículos, instrumentos, utensilios y otros objetos cotidianos.
 
-Cada categoría posee entre 40 y 800 imágenes, aunque la mayoría cuenta con alrededor de 50 observaciones, por lo que la base presenta cierto desbalance entre clases. Las imágenes tienen un tamaño aproximado de 300 × 200 píxeles y, en general, muestran objetos centrados con fondos relativamente simples.
+Cada categoría posee entre 40 y 800 imágenes, aunque la mayoría cuenta con alrededor de 50 observaciones, por lo que la base presenta cierto desbalance entre clases.
+Las imágenes tienen un tamaño aproximado de 300 × 200 píxeles y, en general, muestran objetos centrados con fondos relativamente simples.
 
 Además, el conjunto de datos incluye anotaciones manuales de los contornos de los objetos, lo cual permite identificar la región principal dentro de cada imagen.
 
@@ -81,32 +91,49 @@ Además, el conjunto de datos incluye anotaciones manuales de los contornos de l
 
 ## Descripción del modelo
 
-El modelo escogido ViT-Base es una arquitectura de aprendizaje profundo diseñada para la clasificación de imágenes. A diferencia de redes convolucionales tradicionales, ViT adapta la arquitectura Transformer (originalmente creada para analizar lenguaje natural) al análisis de imágenes. 
+El modelo escogido ViT-Base es una arquitectura de aprendizaje profundo diseñada para la clasificación de imágenes.
+A diferencia de redes convolucionales tradicionales, ViT adapta la arquitectura Transformer (originalmente creada para analizar lenguaje natural) al análisis de imágenes.
 
-Primero, redimensiona la imagen a 224×224 píxeles y luego la divide en 196 parches de 16×16 píxeles, característico de la variante ViT-Base/16. Cada parche se transforma en un vector numérico mediante una proyección lineal, de esta forma se obtiene una secuencia de representaciones. Mediante esta secuencia, se le incorpora información de la posición inicial de cada parche, ya que al convertirlos en una lista lineal se pierde la información de que parches eran vecinos en la imagen original, de esta forma, se podrá conocer la disposición espacial de cada elemento y permitir relacionarlos entre sí.
+Primero, redimensiona la imagen a 224×224 píxeles y luego la divide en 196 parches de 16×16 píxeles, característico de la variante ViT-Base/16.
+Cada parche se transforma en un vector numérico mediante una proyección lineal, de esta forma se obtiene una secuencia de representaciones.
+Mediante esta secuencia, se le incorpora información de la posición inicial de cada parche, ya que al convertirlos en una lista lineal se pierde la información de que parches eran vecinos en la imagen original, de esta forma, se podrá conocer la disposición espacial de cada elemento y permitir relacionarlos entre sí.
 
-La secuencia completa pasa por una serie de bloques Transformer, cada uno compuesto por un mecanismo de atención y capas de transformación. El mecanismo de atención permite que cada parche intercambie información con los demás, independientemente de su distancia en la imagen. 
+La secuencia completa pasa por una serie de bloques Transformer, cada uno compuesto por un mecanismo de atención y capas de transformación.
+El mecanismo de atención permite que cada parche intercambie información con los demás, independientemente de su distancia en la imagen.
 
-Adicionalmente, se añade un token al inicio de la secuencia, el cual, tras el procesamiento, concentra la información de toda la imagen. Se considera el puente que ayuda al modelo a transformar este vector numérico a las categorías que tenga el dataset, además, al pasar ese vector por una función matemática llamada softmax, cada categoría se transforma en una probabilidad donde todas suman 1. Finalmente, el modelo muestra la categoría con mayor probabilidad de que la imagen pertenezca a ella.
+Adicionalmente, se añade un token al inicio de la secuencia, el cual, tras el procesamiento, concentra la información de toda la imagen.
+Se considera el puente que ayuda al modelo a transformar este vector numérico a las categorías que tenga el dataset, además, al pasar ese vector por una función matemática llamada softmax, cada categoría se transforma en una probabilidad donde todas suman 1.
+Finalmente, el modelo muestra la categoría con mayor probabilidad de que la imagen pertenezca a ella.
 
 ## Relación con la fundamentación matemática de las bitácoras
 
-Anteriormente, se mencionó que el modelo transforma cada parche en un vector numérico; para lograr esto se utiliza la función de la Bitácora 1 llamada Multiplicación Matricial, se integra mediante la operación Y=XW+b trabajada en el Ejercicio 1 de la Bitácora 2 (capa lineal hacia adelante), donde cada parche (X) se multiplica por una matriz de pesos (W) y se le suma un vector de sesgo (b). El resultado es lo que se conoce como un embedding: una representación numérica compacta que captura las características visuales del parche en un espacio de menor dimensión que el modelo puede procesar. 
+Anteriormente, se mencionó que el modelo transforma cada parche en un vector numérico; para lograr esto se utiliza la función de la Bitácora 1 llamada Multiplicación Matricial, se integra mediante la operación Y=XW+b trabajada en el Ejercicio 1 de la Bitácora 2 (capa lineal hacia adelante), donde cada parche (X) se multiplica por una matriz de pesos (W) y se le suma un vector de sesgo (b).
+El resultado es lo que se conoce como un embedding: una representación numérica compacta que captura las características visuales del parche en un espacio de menor dimensión que el modelo puede procesar.
 
-Posteriormente, cuando ya se le añade la información de la posición inicial de cada parche, se aplica la función de Broadcasting trabajada en la Bitácora 1, ya que cada vector de posición se suma a los embeddings construidos antes. Dentro del mecanismo de atención, lo que ocurre es que cada parche intercambia información mediante el producto punto entre las representaciones de cada parche, función utilizada en el Ejercicio 7 de la Bitácora 1. Luego, se aplica softmax sobre el resultado para convertir los resultados en pesos de atención que sumen 1 y determine qué tanta influencia tiene un parche sobre otro. Estos pesos se combinan mediante otra multiplicación matricial para obtener una nueva representación por parches que tenga en cuenta el contexto de toda la imagen. 
+Posteriormente, cuando ya se le añade la información de la posición inicial de cada parche, se aplica la función de Broadcasting trabajada en la Bitácora 1, ya que cada vector de posición se suma a los embeddings construidos antes.
+Dentro del mecanismo de atención, lo que ocurre es que cada parche intercambia información mediante el producto punto entre las representaciones de cada parche, función utilizada en el Ejercicio 7 de la Bitácora 1.
+Luego, se aplica softmax sobre el resultado para convertir los resultados en pesos de atención que sumen 1 y determine qué tanta influencia tiene un parche sobre otro.
+Estos pesos se combinan mediante otra multiplicación matricial para obtener una nueva representación por parches que tenga en cuenta el contexto de toda la imagen.
 
 Cada uno de estos bloques Transformer aplica, antes de la atención y antes del MLP, la técnica de Layer Normalization trabajada en el Ejercicio 20 de la Bitácora 2, en lugar de Batch Normalization, ya que cada parche debe normalizarse usando únicamente sus propias características, sin depender de los demás elementos del lote.
 
-Además, cada bloque conserva una conexión residual alrededor de la atención y otra alrededor del MLP: la entrada que recibe el bloque se suma a su propia salida, la misma operación elemento a elemento trabajada en el Ejercicio 3 de la Bitácora 1. Esto permite que la información original no se pierda conforme pasa por los 12 bloques apilados que conforman ViT-Base, sino que se vaya enriqueciendo progresivamente.
+Además, cada bloque conserva una conexión residual alrededor de la atención y otra alrededor del MLP: la entrada que recibe el bloque se suma a su propia salida, la misma operación elemento a elemento trabajada en el Ejercicio 3 de la Bitácora 1.
+Esto permite que la información original no se pierda conforme pasa por los 12 bloques apilados que conforman ViT-Base, sino que se vaya enriqueciendo progresivamente.
 
-Por último, cada bloque incluye un MLP (Multi-Layer Perceptron), que procesa cada parche de forma individual a diferencia de la atención, que mezcla información entre parches. El MLP está compuesto por dos capas lineales (la misma multiplicación matricial usada en varias ocasiones) con una función de activación no lineal entre ellas, lo que le da al modelo capacidad para aprender transformaciones más complejas sobre cada representación.
+Por último, cada bloque incluye un MLP (Multi-Layer Perceptron), que procesa cada parche de forma individual a diferencia de la atención, que mezcla información entre parches.
+El MLP está compuesto por dos capas lineales (la misma multiplicación matricial usada en varias ocasiones) con una función de activación no lineal entre ellas, lo que le da al modelo capacidad para aprender transformaciones más complejas sobre cada representación.
 
-Finalmente, lo que muestra el modelo es la confianza generada para cada imagen. La confianza representa el grado de certeza con que el modelo asigna una categoría a cada imagen analizada. Un valor alto indica que el modelo identificó características visuales consistentes con una categoría específica; un valor bajo sugiere que la imagen no presenta similitudes claras con ninguna de las categorías conocidas por el modelo. La confianza se genera mediante la función softmax, mencionada anteriormente, que transforma la información generada por el token especial a probabilidades mediante una distribución válida. 
+Finalmente, lo que muestra el modelo es la confianza generada para cada imagen.
+La confianza representa el grado de certeza con que el modelo asigna una categoría a cada imagen analizada.
+Un valor alto indica que el modelo identificó características visuales consistentes con una categoría específica; un valor bajo sugiere que la imagen no presenta similitudes claras con ninguna de las categorías conocidas por el modelo.
+La confianza se genera mediante la función softmax, mencionada anteriormente, que transforma la información generada por el token especial a probabilidades mediante una distribución válida.
 
+## Resultados
 
-## Resultados 
-
-Para la generación de resultados, se aplicó el modelo al dataset escogido: *Caltech 101* a las primeras 100 imágenes, con el fin de encontrar una conclusión acerca de cómo funciona el modelo y sus limitaciones. Primero, al analizar la coincidencia de las etiquetas del dataset Caltech-101 respecto a las predicciones del modelo entrenado en ImageNet, se encontró que solo el 7% coincide en texto exacto. Sin embargo, el modelo ha logrado acertar categorías que se parezcan o estén relacionadas con las etiquetas de los datos analizados como por ejemplo "airplane" con "airliner". Además, los casos con mayor confianza tienden a coincidir semánticamente con la etiqueta real, como se muestra en la siguiente tabla.
+Para la generación de resultados, se aplicó el modelo al dataset escogido: *Caltech 101* a las primeras 100 imágenes, con el fin de encontrar una conclusión acerca de cómo funciona el modelo y sus limitaciones.
+Primero, al analizar la coincidencia de las etiquetas del dataset Caltech-101 respecto a las predicciones del modelo entrenado en ImageNet, se encontró que solo el 7% coincide en texto exacto.
+Sin embargo, el modelo ha logrado acertar categorías que se parezcan o estén relacionadas con las etiquetas de los datos analizados como por ejemplo "airplane" con "airliner".
+Además, los casos con mayor confianza tienden a coincidir semánticamente con la etiqueta real, como se muestra en la siguiente tabla.
 
 \begin{table}[H]
     \centering
@@ -130,7 +157,10 @@ Para la generación de resultados, se aplicó el modelo al dataset escogido: *Ca
     \label{tab:mayor_confianza}
 \end{table}
 
-En el histograma siguiente se muestra la distribución de la confianza asignada a las 100 imágenes analizadas. Un 30% de las imágenes obtuvo una confianza cercana a 1.0, lo que corresponde a los casos en que la predicción del modelo tiende a coincidir semánticamente con la etiqueta real del dataset (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes"). Las imágenes restantes presentan una distribución dispersa a lo largo del rango de confianza, lo que indica menor certeza en la clasificación. La confianza promedio obtenida fue de 61.3%, lo que sugiere un desempeño moderado del modelo sobre este dataset.
+En el histograma siguiente se muestra la distribución de la confianza asignada a las 100 imágenes analizadas.
+Un 30% de las imágenes obtuvo una confianza cercana a 1.0, lo que corresponde a los casos en que la predicción del modelo tiende a coincidir semánticamente con la etiqueta real del dataset (por ejemplo, "airliner" para imágenes etiquetadas como "airplanes").
+Las imágenes restantes presentan una distribución dispersa a lo largo del rango de confianza, lo que indica menor certeza en la clasificación.
+La confianza promedio obtenida fue de 61.3%, lo que sugiere un desempeño moderado del modelo sobre este dataset.
 
 \begin{figure}[H]
     \centering
@@ -139,7 +169,9 @@ En el histograma siguiente se muestra la distribución de la confianza asignada 
     \label{fig:histograma}
 \end{figure}
 
-En el caso de las imágenes que el modelo asignó menos confianza, se observa un patrón donde el modelo tiende a relacionar elementos visualmente similares como rinoceronte y elefante, ya que comparten tamaño, color y textura de piel. Además, tiende a colocar categorías sin relación aparente, como en el caso del yin y yang que lo relacionó con un disco de hockey, que podrían ser visualmente parecidos, pero no comparten ningún significado similar. En estos casos, el modelo claramente no reconoció el objeto, lo que indica que estas categorías no tienen una representación clara en el conjunto de datos con el que fue entrenado el modelo. 
+En el caso de las imágenes que el modelo asignó menos confianza, se observa un patrón donde el modelo tiende a relacionar elementos visualmente similares como rinoceronte y elefante, ya que comparten tamaño, color y textura de piel.
+Además, tiende a colocar categorías sin relación aparente, como en el caso del yin y yang que lo relacionó con un disco de hockey, que podrían ser visualmente parecidos, pero no comparten ningún significado similar.
+En estos casos, el modelo claramente no reconoció el objeto, lo que indica que estas categorías no tienen una representación clara en el conjunto de datos con el que fue entrenado el modelo.
 
 \begin{table}[H]
     \centering
@@ -163,7 +195,8 @@ En el caso de las imágenes que el modelo asignó menos confianza, se observa un
     \label{tbl-menor_confianza}
 \end{table}
 
-Dentro de las predicciones más frecuentes, se observa que entre ellas no presentan una relación notoria, es decir, visualmente no comparten características, lo que podría indicar que el modelo no está sesgado hacia predecir un tipo de categoría, sino que busca analizar cada imagen de manera individual. Además, aparece en gran cantidad "disk brake" y el dataset tiene una categoría como "motorbikes", por lo que el modelo podría estar detectando la imagen de freno de discos en imágenes de motos.
+Dentro de las predicciones más frecuentes, se observa que entre ellas no presentan una relación notoria, es decir, visualmente no comparten características, lo que podría indicar que el modelo no está sesgado hacia predecir un tipo de categoría, sino que busca analizar cada imagen de manera individual.
+Además, aparece en gran cantidad "disk brake" y el dataset tiene una categoría como "motorbikes", por lo que el modelo podría estar detectando la imagen de freno de discos en imágenes de motos.
 
 \begin{table}[H]
     \centering
@@ -191,13 +224,31 @@ Dentro de las predicciones más frecuentes, se observa que entre ellas no presen
 
 # Conclusiones
 
-En conclusión, este trabajo permitió aplicar un modelo Vision Transformer para clasificar imágenes, generar predicciones y analizar los resultados obtenidos a partir del dataset Caltech-101. El desarrollo realizado permitió evidenciar la utilidad que pueden tener este tipo de modelos de inteligencia artificial en tareas de clasificación visual, especialmente porque se parte de un modelo pre-entrenado capaz de identificar patrones en las imágenes y asignar un nivel de confianza a cada predicción. Uno de los aspectos más importantes del trabajo fue precisamente el análisis de la confianza del modelo. Cada registro presentó un grado de certeza distinto, lo cual permitió diferenciar entre predicciones con alta confianza y predicciones con baja confianza. En los casos de menor confianza, se pudo inferir que el modelo presentaba dudas ante categorías visualmente similares, ya que su clasificación depende del reconocimiento de patrones, formas, colores y características presentes en los píxeles de la imagen. Esto complementa el análisis del comportamiento del modelo, ya que no solo se observó la categoría predicha, sino también qué tan seguro era el modelo al realizar dicha clasificación.
+En conclusión, este trabajo permitió aplicar un modelo Vision Transformer para clasificar imágenes, generar predicciones y analizar los resultados obtenidos a partir del dataset Caltech-101.
+El desarrollo realizado permitió evidenciar la utilidad que pueden tener este tipo de modelos de inteligencia artificial en tareas de clasificación visual, especialmente porque se parte de un modelo pre-entrenado capaz de identificar patrones en las imágenes y asignar un nivel de confianza a cada predicción.
+Uno de los aspectos más importantes del trabajo fue precisamente el análisis de la confianza del modelo.
+Cada registro presentó un grado de certeza distinto, lo cual permitió diferenciar entre predicciones con alta confianza y predicciones con baja confianza.
+En los casos de menor confianza, se pudo inferir que el modelo presentaba dudas ante categorías visualmente similares, ya que su clasificación depende del reconocimiento de patrones, formas, colores y características presentes en los píxeles de la imagen.
+Esto complementa el análisis del comportamiento del modelo, ya que no solo se observó la categoría predicha, sino también qué tan seguro era el modelo al realizar dicha clasificación.
 
-A partir de los resultados obtenidos, se observó que la media fue una medida útil para estimar la tendencia general de la confianza. Con un total de 8677 datos, se obtuvo una confianza promedio aproximada de 0.613, lo cual indica que el modelo mostró un nivel de seguridad moderado en sus predicciones. Las categorías con mayor grado de confianza fueron "nautilus", "trilobite" y "accordion", esto podría explicarse por la presencia de patrones visuales constantes y distintivos en este tipo de imágenes, como las formas espirales en el caso del nautilus o las estructuras repetitivas del fuelle en el caso del acordeón. Por otro lado, las categorías con menor confianza fueron "paloma", "gramófono" y "caras". En estos casos, se puede suponer que el modelo tuvo mayores dificultades debido a similitudes visuales con otras categorías. Por ejemplo, las imágenes de palomas pueden confundirse con otras aves, los gramófonos pueden asociarse con objetos de forma circular similares a parlantes, y en el caso de las caras, el modelo pudo haber prestado atención a elementos secundarios como la ropa o el fondo en lugar de enfocarse únicamente en el rostro.
+A partir de los resultados obtenidos, se observó que la media fue una medida útil para estimar la tendencia general de la confianza.
+Con un total de 8677 datos, se obtuvo una confianza promedio aproximada de 0.613, lo cual indica que el modelo mostró un nivel de seguridad moderado en sus predicciones.
+Las categorías con mayor grado de confianza fueron "nautilus", "trilobite" y "accordion", esto podría explicarse por la presencia de patrones visuales constantes y distintivos en este tipo de imágenes, como las formas espirales en el caso del nautilus o las estructuras repetitivas del fuelle en el caso del acordeón.
+Por otro lado, las categorías con menor confianza fueron "paloma", "gramófono" y "caras".
+En estos casos, se puede suponer que el modelo tuvo mayores dificultades debido a similitudes visuales con otras categorías.
+Por ejemplo, las imágenes de palomas pueden confundirse con otras aves, los gramófonos pueden asociarse con objetos de forma circular similares a parlantes, y en el caso de las caras, el modelo pudo haber prestado atención a elementos secundarios como la ropa o el fondo en lugar de enfocarse únicamente en el rostro.
 
-Al realizar las comparaciones generales, se obtuvo un porcentaje promedio de coincidencias de aproximadamente 0.07, valor que resulta bajo en relación con lo esperado. Esto sugiere que, aunque el modelo fue capaz de generar información útil mediante sus niveles de confianza, también presenta limitaciones importantes al enfrentarse a un problema con muchas categorías posibles. La presencia de clases visualmente similares, patrones compartidos entre objetos y diferencias en la representación de las imágenes pudo influir en el desempeño final. Por lo tanto, se concluye que la inteligencia artificial aplicada en este trabajo permitió obtener información relevante sobre la clasificación de imágenes, pero también evidenció que el modelo no debe interpretarse como una herramienta perfecta ni como una respuesta absoluta. Aunque puede alcanzar predicciones con niveles altos de confianza en ciertas categorías, también puede presentar errores o dudas en casos más complejos. Por esta razón, sus resultados deben analizarse de manera crítica, considerando tanto la predicción final como el nivel de confianza asociado.
+Al realizar las comparaciones generales, se obtuvo un porcentaje promedio de coincidencias de aproximadamente 0.07, valor que resulta bajo en relación con lo esperado.
+Esto sugiere que, aunque el modelo fue capaz de generar información útil mediante sus niveles de confianza, también presenta limitaciones importantes al enfrentarse a un problema con muchas categorías posibles.
+La presencia de clases visualmente similares, patrones compartidos entre objetos y diferencias en la representación de las imágenes pudo influir en el desempeño final.
+Por lo tanto, se concluye que la inteligencia artificial aplicada en este trabajo permitió obtener información relevante sobre la clasificación de imágenes, pero también evidenció que el modelo no debe interpretarse como una herramienta perfecta ni como una respuesta absoluta.
+Aunque puede alcanzar predicciones con niveles altos de confianza en ciertas categorías, también puede presentar errores o dudas en casos más complejos.
+Por esta razón, sus resultados deben analizarse de manera crítica, considerando tanto la predicción final como el nivel de confianza asociado.
 
-Desde el ámbito actuarial, la metodología utilizada puede tener aplicaciones en áreas como seguros, gestión de riesgos y automatización de procesos. En seguros generales, por ejemplo, un modelo de clasificación de imágenes podría utilizarse como apoyo para analizar fotografías relacionadas con reclamos, daños en vehículos, propiedades u otros asegurados. Además, el nivel de confiabilidad del modelo podría ayudar a distinguir entre casos que pueden procesarse de manera automática y casos que requieren revisión humana. De esta forma, este tipo de herramientas podría contribuir a mejorar la eficiencia en la evaluación de reclamos y en la toma de decisiones, siempre que se utilicen como apoyo y no como sustituto absoluto del criterio profesional.
+Desde el ámbito actuarial, la metodología utilizada puede tener aplicaciones en áreas como seguros, gestión de riesgos y automatización de procesos.
+En seguros generales, por ejemplo, un modelo de clasificación de imágenes podría utilizarse como apoyo para analizar fotografías relacionadas con reclamos, daños en vehículos, propiedades u otros asegurados.
+Además, el nivel de confiabilidad del modelo podría ayudar a distinguir entre casos que pueden procesarse de manera automática y casos que requieren revisión humana.
+De esta forma, este tipo de herramientas podría contribuir a mejorar la eficiencia en la evaluación de reclamos y en la toma de decisiones, siempre que se utilicen como apoyo y no como sustituto absoluto del criterio profesional.
 
 # Referencias
 

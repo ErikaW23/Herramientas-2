@@ -97,11 +97,9 @@ format:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{../../datos/salidas/histograma_confianza.png}
+    \includegraphics[width=0.6\textwidth]{../../datos/salidas/histograma_confianza.png}
     \caption{Distribución de confianza del modelo ViT-Base aplicado al dataset Caltech-101.}
 \end{figure}
-
-Confianza promedio: 61.3% — un 30% de las imágenes obtuvo confianza cercana a 1.0.
 
 ## Resultados: predicciones con mayor confianza
 

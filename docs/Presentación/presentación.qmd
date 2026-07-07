@@ -18,19 +18,67 @@ format:
                 \setlength{\parskip}{0.8cm}
                 \usepackage{hanging}
                 \usepackage{xurl}
+                \setbeamerfont{footnote}{size=\tiny}
 ---
 
 ## Introducción: motivación y objetivo
 
-Objetivo: aplicar un modelo preentrenado de clasificación de imágenes y analizar su desempeño, conectándolo con la fundamentación matemática de las bitácoras. Tarea: clasificación de imágenes. Relevancia actuarial (1 línea): el nivel de confianza de una predicción puede usarse para distinguir casos procesables automáticamente vs. casos que requieren revisión humana (ej. fotos de reclamos o daños en seguros).
+::: columns
+:::: column
+\centering
+\vspace{1cm}
+\includegraphics[width=0.8\linewidth]{redes-neuronales.jpg}
+\vfill
+::::
+:::: column
+\vspace{0.6cm}
+\footnotesize
+
+- Este proyecto aplica un modelo preentrenado de clasificación de imágenes, conectando su desempeño con la fundamentación matemática de las bitácoras. \vspace{0.6cm}
+
+- **Relevancia actuarial:** la confianza de una predicción permite distinguir casos automatizables de casos que requieren revisión humana (ej. reclamos o daños en seguros). \vspace{0.6cm}
+::::
+:::
 
 ## Tarea seleccionada y justificación
 
-Tarea: clasificación de imágenes. Modelo: ViT-Base (Vision Transformer, variante patch16-224), vía el paquete Transformers. Por qué: adapta el mecanismo de atención de los Transformers (NLP) al análisis visual — permite ilustrar cómo la IA puede apoyar procesos de segmentación y predicción de riesgos en el trabajo actuarial.
+:::: columns
+::: column
+\footnotesize
+\vspace{0.5cm}
+
+- **Tarea:** clasificación de imágenes. \vspace{0.3cm}
+
+- **Modelo:** ViT-Base (Vision Transformer, patch16-224), vía Transformers\footnotemark. \vspace{0.3cm}
+
+- **Por qué:** adapta la atención de los Transformers (NLP) al análisis visual, útil para segmentación y predicción de riesgos en la actuaría. \vspace{0.3cm}
+:::
+::: column
+\centering
+\vspace{0.3cm}
+\includegraphics[width=1\linewidth]{imagen2.png}
+:::
+::::
+
+\footnotetext{Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X., Unterthiner, T., ... Houlsby, N. (2021). \textit{An image is worth 16x16 words: Transformers for image recognition at scale}. International Conference on Learning Representations. \url{https://arxiv.org/abs/2010.11929}}
 
 ## Descripción del dataset
 
-Fuente: Caltech 101 (Fei-Fei, Andreetto, Ranzato & Perona, Caltech, 2003), con la referencia completa en el footnote. Tamaño: \~9,000 imágenes en 101 categorías; entre 40 y 800 imágenes por clase (la mayoría \~50), con desbalance notorio entre clases. Detalle: imágenes \~300×200 px, objetos centrados, fondos simples, con anotaciones manuales de contorno.
+:::: columns
+::: column
+\footnotesize
+\vspace{0.5cm}
+- **Fuente:** Caltech 101 (Li, Andreetto, Ranzato \& Perona, 2022)\footnotemark: cerca de **9.000 imágenes**, **101 categorías**. \vspace{0.3cm}
+- Entre 40 y 800 imágenes por clase. \vspace{0.3cm}
+- Imágenes de ~**300×200 px**, objetos centrados y fondos simples. \vspace{0.3cm}
+:::
+::: column
+\centering
+\vspace{0.3cm}
+\includegraphics[width=0.85\linewidth]{caltech101.png}
+:::
+::::
+\footnotetext{Li, F., Andreetto, M., Ranzato, M. \& Perona, P. (2022). \textit{Caltech 101 (1.0)} [Data set]. CaltechDATA. \url{https://doi.org/10.22002/D1.20086}}
 
 ## Descripción del modelo y metodología
 
